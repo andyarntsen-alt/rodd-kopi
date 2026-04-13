@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 – Rodd</title>
+  <link rel="icon" type="image/jpeg" href="assets/favicon.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .error-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--golden);
+      color: var(--forest);
+      text-align: center;
+      padding: 24px;
+    }
+    .error-logo {
+      width: 64px;
+      height: 64px;
+      border-radius: 14px;
+      margin-bottom: 48px;
+    }
+    .error-code {
+      font-size: 6rem;
+      font-weight: 700;
+      letter-spacing: -4px;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .error-message {
+      font-size: 1.125rem;
+      font-weight: 400;
+      opacity: 0.6;
+      margin-bottom: 40px;
+    }
+    .error-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--forest);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: opacity 0.2s;
+    }
+    .error-link:hover {
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="error-page">
+    <img src="assets/favicon.jpg" alt="rodd" class="error-logo">
+    <h1 class="error-code">404</h1>
+    <p class="error-message">Siden finnes ikke</p>
+    <a href="index.html" class="error-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Tilbake til forsiden
+    </a>
+  </div>
+</body>
+</html>

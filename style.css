@@ -26,10 +26,30 @@
   box-sizing: border-box;
 }
 
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--golden);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--forest);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--forest-light);
+}
+
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scrollbar-color: var(--forest) var(--golden);
+  scrollbar-width: thin;
 }
 
 body {
@@ -45,6 +65,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  opacity: 0;
+  animation: pageLoad 0.5s ease forwards;
+}
+
+@keyframes pageLoad {
+  to { opacity: 1; }
 }
 
 h1, h2, h3 {
@@ -801,8 +827,8 @@ nav:hover {
   border: 1.5px solid #999;
   background: linear-gradient(180deg, #7e7e7e, #4e4e4e);
   box-shadow: 0 0 45px 0 rgba(0, 0, 0, 0.3);
-  transform: perspective(800px) rotateY(-3deg) rotateX(2deg) rotate(-2.4deg);
-  transition: transform 0.1s ease-out;
+  transform: perspective(1000px) rotateY(-6deg) rotateX(3deg) rotate(-1deg);
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: transform;
 }
 
@@ -1716,7 +1742,7 @@ nav:hover {
    ============================================ */
 .team {
   padding: 48px 0 96px;
-  background: var(--forest);
+  background: linear-gradient(to bottom, hsla(88, 12%, 33%, 0.95), var(--forest));
   color: var(--golden);
 }
 
@@ -1915,14 +1941,14 @@ nav:hover {
   justify-content: center;
   gap: 8px;
   position: relative;
-  min-width: 200px;
-  padding: 20px 32px;
-  height: 62px;
+  min-width: auto;
+  padding: 16px 28px;
+  height: 52px;
   border-radius: var(--radius);
   border: none;
   background: transparent;
   font-family: inherit;
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   font-weight: 600;
   color: var(--golden);
   text-decoration: none;

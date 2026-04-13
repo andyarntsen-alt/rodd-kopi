@@ -38,18 +38,25 @@ window.addEventListener('scroll', () => {
         });
       }
 
-      // Keyboard 3D tilt basert på scroll
+      // Keyboard 3D tilt basert på scroll-retning
       const keyboard = document.querySelector('.integrations-keyboard');
       if (keyboard) {
         const kbSection = keyboard.closest('.keyboard-section');
         if (kbSection) {
           const rect = kbSection.getBoundingClientRect();
           const viewH = window.innerHeight;
+
+          // Hvor langt gjennom viewporten er tastaturet (1 = topp, -1 = bunn)
           const center = rect.top + rect.height / 2;
-          const progress = (center - viewH / 2) / viewH; // -0.5 til 0.5
-          const rotY = progress * 8; // -4deg til 4deg
-          const rotX = 2 + progress * -3;
-          keyboard.style.transform = `perspective(800px) rotateY(${rotY}deg) rotateX(${rotX}deg) rotate(-2.4deg)`;
+          const position = (center - viewH / 2) / (viewH / 2);
+          const clamped = Math.max(-1, Math.min(1, position));
+
+          // Scroll ned = tipp mot høyre, scroll opp = tipp mot venstre
+          const rotY = clamped * -6;
+          const rotX = clamped * 3;
+          const baseRot = -2.4 + clamped * 1.5;
+
+          keyboard.style.transform = `perspective(1000px) rotateY(${rotY}deg) rotateX(${rotX}deg) rotate(${baseRot}deg)`;
         }
       }
 
