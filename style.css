@@ -62,8 +62,6 @@ body {
   overflow-x: hidden;
   letter-spacing: -0.14px;
   font-weight: 400;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   opacity: 0;
   animation: pageLoad 0.5s ease forwards;
@@ -93,6 +91,12 @@ img {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--forest);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 .container {
@@ -292,6 +296,8 @@ nav:hover {
   gap: 24px;
   padding: 24px;
   background: hsla(88, 10%, 16%, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 0 0 14px 14px;
 }
 
@@ -299,35 +305,12 @@ nav:hover {
   font-size: 1rem;
   font-weight: 500;
   color: var(--golden);
+  opacity: 0.7;
+  transition: opacity 0.2s;
 }
 
-/* ---- BUTTONS ---- */
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: var(--golden);
-  color: var(--forest);
-  padding: 14px 32px;
-  border-radius: 999px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  transition: opacity 0.2s, transform 0.2s;
-  text-decoration: none;
-  font-family: inherit;
-}
-
-.btn-primary:hover {
-  opacity: 0.9;
-  transform: scale(1.02);
-}
-
-.btn-large {
-  padding: 16px 40px;
-  font-size: 1rem;
+.mobile-menu a:hover {
+  opacity: 1;
 }
 
 /* ---- SECTION LABEL ---- */
@@ -801,16 +784,6 @@ nav:hover {
   overflow: hidden;
 }
 
-.keyboard-label {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--olive);
-  text-align: center;
-  margin-bottom: 24px;
-}
-
 .keyboard-wrap {
   display: flex;
   justify-content: center;
@@ -862,16 +835,6 @@ nav:hover {
   overflow: hidden;
 }
 
-.key-app {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: scale(1.04) translateY(-1px);
-  transform-origin: center;
-  display: block;
-  transition: transform 0.1s ease;
-}
-
 .key-mask {
   position: absolute;
   top: 0;
@@ -893,10 +856,6 @@ nav:hover {
   top: 2px;
   height: calc(100% - 3px);
   box-shadow: inset 0 1.56px 1.56px -1.4px hsla(0, 0%, 100%, 0.15);
-}
-
-.key:hover .key-app {
-  transform: scale(1.04) translateY(0);
 }
 
 .key:hover .key-mask {
@@ -1295,6 +1254,7 @@ nav:hover {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
+  counter-reset: service;
 }
 
 /* Instagram-kort */
@@ -1424,10 +1384,6 @@ nav:hover {
 }
 
 /* Tjeneste-nummer under hvert kort */
-.services-grid {
-  counter-reset: service;
-}
-
 .social-post::after {
   counter-increment: service;
   content: "0" counter(service) " —";
@@ -1437,7 +1393,7 @@ nav:hover {
   font-weight: 600;
   letter-spacing: 0.5px;
   color: var(--forest);
-  opacity: 0.3;
+  opacity: 0.35;
   text-align: center;
 }
 
@@ -1470,7 +1426,7 @@ nav:hover {
   font-size: 0.8125rem;
   line-height: 1.5;
   color: #fff;
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 .yt-play-btn {
@@ -1670,7 +1626,7 @@ nav:hover {
 }
 
 .snap-content h3 { color: #fff; font-size: 1.75rem; font-weight: 700; letter-spacing: -1.2px; margin-bottom: 8px; }
-.snap-content p { color: #fff; opacity: 0.5; font-size: 0.8125rem; line-height: 1.5; }
+.snap-content p { color: #fff; opacity: 0.6; font-size: 0.8125rem; line-height: 1.5; }
 .snap-content .insta-step { color: #fff; }
 
 .snap-bottom {
@@ -1807,7 +1763,7 @@ nav:hover {
   font-size: 0.6875rem;
   font-weight: 600;
   background: #fff;
-  color: #fff;
+  color: var(--forest);
   padding: 4px 8px;
   border-radius: 5px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -1876,11 +1832,15 @@ nav:hover {
   font-size: 0.8125rem;
   color: var(--golden);
   opacity: 0.45;
+  text-decoration: none;
   transition: opacity 0.2s;
 }
 
 .team-email:hover {
   opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
 }
 
 /* ============================================
@@ -1925,11 +1885,6 @@ nav:hover {
   margin: 0 0 32px;
   line-height: 1.6;
   letter-spacing: -0.16px;
-}
-
-.contact-btn {
-  background: var(--forest);
-  color: var(--golden);
 }
 
 .contact-fancy-btn {
@@ -2105,6 +2060,13 @@ nav:hover {
 /* ============================================
    FOOTER
    ============================================ */
+footer :focus-visible,
+.profiles :focus-visible,
+.team :focus-visible,
+header :focus-visible {
+  outline-color: var(--golden);
+}
+
 footer {
   padding: 64px 0 0;
   background: var(--forest);
@@ -2150,7 +2112,7 @@ footer {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--golden);
-  opacity: 0.35;
+  opacity: 0.4;
   margin-bottom: 4px;
 }
 
@@ -2159,12 +2121,15 @@ footer {
   color: var(--golden);
   opacity: 0.6;
   text-decoration: none;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s, text-decoration 0.2s;
   letter-spacing: -0.1px;
 }
 
 .footer-col a:hover {
   opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
 }
 
 .footer-socials {
@@ -2209,14 +2174,16 @@ footer {
 .footer-bottom p {
   font-size: 0.6875rem;
   color: var(--golden);
-  opacity: 0.3;
+  opacity: 0.4;
 }
 
 .footer-bottom .privacy-link {
   font-size: 0.6875rem;
   color: var(--golden);
-  opacity: 0.3;
-  text-decoration: none;
+  opacity: 0.4;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
   transition: opacity 0.2s;
 }
 
@@ -2256,7 +2223,7 @@ footer {
   height: 48px;
   margin: 0 auto 16px;
   color: var(--forest);
-  opacity: 0.3;
+  opacity: 0.4;
 }
 
 .cookie-icon svg {
@@ -2439,7 +2406,7 @@ footer {
     width: 100%;
   }
 
-  .hero-btn-primary,
+  .fancy-btn,
   .hero-btn-secondary {
     width: 100%;
     justify-content: center;
@@ -2456,10 +2423,6 @@ footer {
   .profiles-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
-  }
-
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
   }
 
   .about-content {
@@ -2505,9 +2468,6 @@ footer {
     text-align: center;
   }
 
-  .newsletter-form {
-    flex-direction: column;
-  }
 }
 
 @media (max-width: 480px) {
@@ -2516,11 +2476,4 @@ footer {
     gap: 12px;
   }
 
-  .service-card {
-    padding: 24px 16px;
-  }
-
-  .profile-card {
-    padding: 20px;
-  }
 }
