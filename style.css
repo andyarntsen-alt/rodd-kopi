@@ -245,7 +245,8 @@ nav:hover {
 .nav-cta {
   color: var(--forest) !important;
   background: var(--golden) !important;
-  padding: 7px 16px;
+  padding: 12px 16px;
+  min-height: 44px;
   border-radius: 8px;
   font-size: 0.75rem;
   font-weight: 600;
@@ -409,7 +410,7 @@ nav:hover {
   background: transparent;
 }
 
-.fancy-btn:hover {
+.fancy-btn:hover, .fancy-btn:active {
   transform: scale(1.02);
   box-shadow:
     0 0 1px 2px rgba(255, 255, 255, 0.3),
@@ -437,7 +438,7 @@ nav:hover {
   transition: all 0.4s ease;
 }
 
-.fancy-btn:hover::after {
+.fancy-btn:hover::after, .fancy-btn:active::after {
   transform: scale(1.05, 1.1);
   box-shadow: inset 0 -1px 3px 0 rgba(255, 255, 255, 1);
 }
@@ -481,11 +482,11 @@ nav:hover {
   100% { transform: rotate(360deg); }
 }
 
-.fancy-btn:hover .outline {
+.fancy-btn:hover .outline, .fancy-btn:active .outline {
   opacity: 1;
 }
 
-.fancy-btn:hover .outline > div {
+.fancy-btn:hover .outline > div, .fancy-btn:active .outline > div {
   animation-play-state: running;
 }
 
@@ -526,11 +527,11 @@ nav:hover {
   opacity: 0;
 }
 
-.fancy-btn:hover .state .icon .empty {
+.fancy-btn:hover .state .icon .empty, .fancy-btn:active .state .icon .empty {
   opacity: 0;
 }
 
-.fancy-btn:hover .state .icon .filled {
+.fancy-btn:hover .state .icon .filled, .fancy-btn:active .state .icon .filled {
   opacity: 1;
   animation: pulseArrow 1.2s infinite;
 }
@@ -550,7 +551,7 @@ nav:hover {
   animation: slideDown 0.8s ease forwards calc(var(--i) * 0.03s);
 }
 
-.fancy-btn:hover p span {
+.fancy-btn:hover p span, .fancy-btn:active p span {
   opacity: 1;
   animation: wave 0.5s ease forwards calc(var(--i) * 0.02s);
 }
@@ -619,7 +620,7 @@ nav:hover {
   z-index: -1;
 }
 
-.hero-btn-secondary:hover {
+.hero-btn-secondary:hover, .hero-btn-secondary:active {
   transform: scale(1.02);
   box-shadow:
     0 0 1px 2px rgba(255, 255, 255, 0.3),
@@ -1054,7 +1055,7 @@ nav:hover {
 
 @media (max-width: 480px) {
   .integrations-keyboard {
-    transform: rotate(-2.4deg) scale(0.45);
+    transform: rotate(-2.4deg) scale(0.38);
   }
 
   .keyboard-section {
@@ -1135,7 +1136,7 @@ nav:hover {
   z-index: 1;
 }
 
-.polaroid:hover {
+.polaroid:hover, .polaroid:active {
   transform: rotate(0deg) scale(1.05) translateY(-4px);
   box-shadow:
     0 8px 20px rgba(0, 0, 0, 0.15),
@@ -1266,7 +1267,7 @@ nav:hover {
   transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
 }
 
-.insta-card:hover {
+.insta-card:hover, .insta-card:active {
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
@@ -1378,7 +1379,7 @@ nav:hover {
   transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
 }
 
-.social-post:hover {
+.social-post:hover, .social-post:active {
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
@@ -1938,7 +1939,7 @@ nav:hover {
   z-index: -1;
 }
 
-.contact-fancy-btn:hover {
+.contact-fancy-btn:hover, .contact-fancy-btn:active {
   transform: scale(1.02);
   box-shadow:
     0 0 1px 2px rgba(255, 255, 255, 0.1),
@@ -1950,7 +1951,7 @@ nav:hover {
   transition: transform 0.3s ease;
 }
 
-.contact-fancy-btn:hover svg {
+.contact-fancy-btn:hover svg, .contact-fancy-btn:active svg {
   transform: translateX(3px);
 }
 
@@ -1975,7 +1976,7 @@ nav:hover {
 .subscribe {
   position: relative;
   height: 160px;
-  width: 280px;
+  width: min(280px, 100%);
   padding: 24px;
   background-color: #fff;
   border-radius: 6px;
@@ -2267,6 +2268,7 @@ footer {
 .cookie-decline {
   flex: 1;
   padding: 10px 16px;
+  min-height: 44px;
   border: none;
   border-radius: 10px;
   background: transparent;
@@ -2287,6 +2289,7 @@ footer {
 .cookie-accept {
   flex: 1;
   padding: 10px 16px;
+  min-height: 44px;
   border: none;
   border-radius: 10px;
   background: var(--forest);
@@ -2384,6 +2387,13 @@ footer {
   }
 }
 
+@media (max-width: 900px) {
+  .profiles-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
 @media (max-width: 768px) {
   .nav-links {
     display: none;
@@ -2468,12 +2478,51 @@ footer {
     text-align: center;
   }
 
+  .insta-image h3,
+  .yt-thumbnail h3,
+  .fb-content h3,
+  .snap-content h3 {
+    font-size: clamp(1.125rem, 4vw, 1.75rem);
+  }
+
+  .fb-stats,
+  .fb-actions button,
+  .snap-time,
+  .snap-reply,
+  .yt-meta span {
+    font-size: 0.8125rem;
+  }
+
+  .cookie-banner {
+    width: min(320px, calc(100vw - 48px));
+  }
+
 }
 
 @media (max-width: 480px) {
   .services-grid {
     grid-template-columns: 1fr 1fr;
     gap: 12px;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .insta-image h3,
+  .yt-thumbnail h3,
+  .fb-content h3,
+  .snap-content h3 {
+    font-size: 1rem;
+    letter-spacing: -0.5px;
+  }
+
+  .insta-image p,
+  .yt-thumbnail p,
+  .fb-content p,
+  .snap-content p {
+    font-size: 0.6875rem;
   }
 
 }
