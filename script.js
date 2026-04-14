@@ -13,6 +13,49 @@ const header = document.getElementById('header');
 let lastScrollY = 0;
 let ticking = false;
 const kbState = { rotY: -6, rotX: 3, rot: -2.4 };
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+// Mobile hero typewriter
+const typewriterText = document.querySelector('.hero-typewriter-text');
+if (typewriterText) {
+  const typePhrases = [
+    'Konsepter som vokser.',
+    'Innhold folk stopper for.',
+    'Merkevarer som blir sett.',
+    'SoMe med retning.'
+  ];
+
+  if (reduceMotion.matches) {
+    typewriterText.textContent = typePhrases[0];
+  } else {
+    let phraseIndex = 0;
+    let charIndex = typePhrases[0].length;
+    let deleting = true;
+
+    const runTypewriter = () => {
+      const phrase = typePhrases[phraseIndex];
+      typewriterText.textContent = phrase.slice(0, charIndex);
+
+      if (!deleting && charIndex === phrase.length) {
+        deleting = true;
+        window.setTimeout(runTypewriter, 1400);
+        return;
+      }
+
+      if (deleting && charIndex === 0) {
+        deleting = false;
+        phraseIndex = (phraseIndex + 1) % typePhrases.length;
+        window.setTimeout(runTypewriter, 180);
+        return;
+      }
+
+      charIndex += deleting ? -1 : 1;
+      window.setTimeout(runTypewriter, deleting ? 34 : 58);
+    };
+
+    window.setTimeout(runTypewriter, 900);
+  }
+}
 
 window.addEventListener('scroll', () => {
   if (!ticking) {
@@ -178,7 +221,7 @@ document.querySelectorAll('img').forEach(img => {
 });
 
 // Prefers reduced motion
-if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+if (reduceMotion.matches) {
   document.documentElement.style.setProperty('scroll-behavior', 'auto');
   document.querySelectorAll('.fade-in').forEach(el => {
     el.classList.add('visible');
