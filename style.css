@@ -1846,7 +1846,10 @@ header :focus-visible {
 
 footer {
   padding: 64px 0 0;
-  background: var(--forest);
+  background: linear-gradient(137deg, hsla(88, 12%, 22%, 0.95) 5%, hsla(88, 10%, 16%, 0.98) 76%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid hsla(45, 29%, 84%, 0.06);
 }
 
 .footer-top {
