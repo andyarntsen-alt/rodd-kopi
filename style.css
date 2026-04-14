@@ -1043,18 +1043,27 @@ nav:hover {
 
 @media (max-width: 768px) {
   .integrations-keyboard {
-    transform: rotate(-2.4deg) scale(0.6);
-    transform-origin: center;
+    transform: rotate(-1deg) scale(0.55) !important;
+    transform-origin: left center;
   }
 
   .keyboard-section {
     padding: 40px 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .keyboard-wrap {
+    padding: 0 24px;
+    display: flex;
+    justify-content: flex-start;
   }
 }
 
 @media (max-width: 480px) {
   .integrations-keyboard {
-    transform: rotate(-2.4deg) scale(0.38);
+    transform: rotate(-1deg) scale(0.48) !important;
+    transform-origin: left center;
   }
 
   .keyboard-section {
@@ -2174,8 +2183,24 @@ footer {
     display: flex;
   }
 
+  /* 3. HERO CONTENT ON MOBILE */
+  .hero {
+    min-height: auto;
+    padding: 100px 0 0;
+  }
+
+  .hero-container {
+    padding: 0 24px;
+  }
+
   .hero-logo {
-    width: 220px;
+    width: 240px;
+    border-radius: 32px;
+    padding: 20px 32px;
+  }
+
+  .hero-tagline {
+    font-size: 0.9375rem;
   }
 
   .hero-buttons {
@@ -2189,33 +2214,107 @@ footer {
     justify-content: center;
   }
 
+  /* 1. HERO SHOWCASE VIDEOS — horizontal scroll strip */
+  .hero-showcase {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    display: flex;
+    gap: 12px;
+    padding: 32px 24px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .hero-showcase::-webkit-scrollbar {
+    display: none;
+  }
+
+  .showcase-card {
+    width: 160px !important;
+    height: 240px !important;
+    flex-shrink: 0;
+    animation: none !important;
+    opacity: 1 !important;
+  }
+
+  .showcase-1, .showcase-2, .showcase-3 {
+    animation-delay: 0s !important;
+    height: 240px !important;
+  }
+
+  /* 2. KEYBOARD ON MOBILE — horizontal scroll */
+  .keyboard-section {
+    padding: 40px 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .keyboard-wrap {
+    padding: 0 24px;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .integrations-keyboard {
+    transform: rotate(-1deg) scale(0.55) !important;
+    transform-origin: left center;
+  }
+
+  /* 4. INSTAGRAM SERVICE CARDS ON MOBILE */
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .insta-image {
+    padding: 16px;
+  }
+
+  .insta-image h3 {
+    font-size: 1.25rem !important;
+  }
+
+  /* 5. POLAROID CARDS ON MOBILE */
   .profiles-heading {
-    font-size: 1.5rem;
+    font-size: 2rem;
+    letter-spacing: -1.5px;
   }
 
   .services-heading {
-    font-size: 1.5rem;
+    font-size: 2rem;
+    letter-spacing: -1.5px;
   }
 
   .profiles-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
+    max-width: 100%;
   }
 
+  .polaroid {
+    transform: rotate(var(--rotate, 0deg)) translateY(0px) !important;
+  }
+
+  /* 8. ABOUT SECTION ON MOBILE */
   .about-content {
     grid-template-columns: 1fr;
     gap: 32px;
   }
 
+  /* 7. TEAM SECTION ON MOBILE */
   .team-grid {
-    grid-template-columns: 1fr;
-    max-width: 360px;
-    margin: 0 auto;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 
+  /* 6. CONTACT SECTION ON MOBILE */
   .contact-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 32px;
+    text-align: center;
   }
 
   .contact-left {
@@ -2223,7 +2322,7 @@ footer {
   }
 
   .contact-sub {
-    margin: 0 auto 32px;
+    margin: 0 auto 24px;
   }
 
   .contact-right {
@@ -2264,12 +2363,42 @@ footer {
     width: min(320px, calc(100vw - 48px));
   }
 
+  /* 10. GENERAL MOBILE POLISH */
+  .profiles-desc,
+  .services-desc {
+    font-size: 0.9375rem;
+  }
+
+  .section-label {
+    font-size: 0.6875rem;
+  }
+
 }
 
 @media (max-width: 480px) {
   .services-grid {
     grid-template-columns: 1fr 1fr;
     gap: 12px;
+  }
+
+  /* 4. INSTAGRAM SERVICE CARDS AT 480px */
+  .insta-image h3 {
+    font-size: 1rem !important;
+  }
+
+  .insta-image p {
+    font-size: 0.6875rem;
+  }
+
+  .insta-step {
+    font-size: 2.5rem;
+  }
+
+  /* 7. TEAM SECTION AT 480px */
+  .team-grid {
+    grid-template-columns: 1fr;
+    max-width: 300px;
+    margin: 0 auto;
   }
 
   .footer-top {

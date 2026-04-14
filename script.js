@@ -27,9 +27,9 @@ window.addEventListener('scroll', () => {
         header.classList.remove('header-hidden');
       }
 
-      // Hero showcase parallax
+      // Hero showcase parallax (skip på mobil)
       const cards = document.querySelectorAll('.showcase-card');
-      if (currentScrollY < window.innerHeight && cards.length) {
+      if (currentScrollY < window.innerHeight && cards.length && window.innerWidth > 768) {
         const progress = currentScrollY / window.innerHeight;
         cards.forEach((card, i) => {
           const speed = 0.1 + i * 0.08;
