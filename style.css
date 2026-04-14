@@ -743,9 +743,50 @@ nav:hover {
   border-radius: 6px;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1366px) {
+  .hero {
+    min-height: auto;
+    display: block;
+    padding: 120px 0 48px;
+  }
+
+  .hero-content {
+    max-width: 640px;
+  }
+
   .hero-showcase {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    display: flex;
+    gap: 12px;
+    align-items: stretch;
+    margin-top: 44px;
+    padding: 0 6vw 12px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+  }
+
+  .hero-showcase::-webkit-scrollbar {
     display: none;
+  }
+
+  .showcase-card {
+    width: clamp(180px, 24vw, 230px);
+    height: clamp(248px, 32vw, 318px);
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    animation: none !important;
+    opacity: 1 !important;
+  }
+
+  .showcase-1,
+  .showcase-2,
+  .showcase-3 {
+    height: clamp(248px, 32vw, 318px);
   }
 }
 
@@ -788,15 +829,20 @@ nav:hover {
 .keyboard-wrap {
   display: flex;
   justify-content: center;
+  width: 100%;
+  padding: 0 24px;
 }
 
 .integrations-keyboard {
-  padding: 10px;
-  width: 747.5px;
-  height: 269px;
+  --key-size: 45px;
+  --key-gap: 5px;
+  --keyboard-pad: 10px;
+  padding: var(--keyboard-pad);
+  width: max-content;
+  height: auto;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: var(--key-gap);
   border-radius: 15px;
   border: 1.5px solid #999;
   background: linear-gradient(180deg, #7e7e7e, #4e4e4e);
@@ -807,17 +853,17 @@ nav:hover {
 
 .integrations-keyboard-row {
   display: flex;
-  gap: 5px;
+  gap: var(--key-gap);
   position: relative;
 }
 
 .key {
-  width: 45px;
-  height: 45px;
+  width: var(--key-size);
+  height: var(--key-size);
   flex-shrink: 0;
   position: relative;
   background: linear-gradient(180deg, #1c1c1e, #0f0f10);
-  border-radius: 9px;
+  border-radius: calc(var(--key-size) * 0.2);
   overflow: hidden;
   box-sizing: border-box;
   box-shadow: 0 0 1.5px 0 rgba(0, 0, 0, 0.45), 0.39px 0.78px 2.34px rgba(0, 0, 0, 0.15);
@@ -826,7 +872,7 @@ nav:hover {
 .key-inner {
   background: linear-gradient(180deg, #101012, #27272a);
   box-shadow: inset 0 1.56px 1.56px 0 hsla(0, 0%, 100%, 0.2);
-  border-radius: 8px;
+  border-radius: calc(var(--key-size) * 0.178);
   position: absolute;
   height: calc(100% - 3.5px);
   width: calc(100% - 2px);
@@ -845,7 +891,7 @@ nav:hover {
   background-color: transparent;
   border: solid #303030;
   border-width: 1px 1px 2px;
-  border-radius: 8.6px;
+  border-radius: calc(var(--key-size) * 0.191);
   opacity: 0.75;
   z-index: 3;
   box-sizing: border-box;
@@ -868,8 +914,8 @@ nav:hover {
 /* ESC hjerte-knapp */
 .key-esc-heart {
   background: #e8e8e8 !important;
-  border: 4px solid #ffe2e2 !important;
-  border-radius: 12px !important;
+  border: calc(var(--key-size) * 0.089) solid #ffe2e2 !important;
+  border-radius: calc(var(--key-size) * 0.267) !important;
   box-shadow: rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset !important;
   transition:
     transform 400ms cubic-bezier(0.68, -0.55, 0.27, 2.5),
@@ -900,8 +946,8 @@ nav:hover {
 }
 
 .key-heart-inner svg {
-  width: 22px;
-  height: 22px;
+  width: calc(var(--key-size) * 0.489);
+  height: calc(var(--key-size) * 0.489);
   color: rgb(255, 110, 110);
   transition: transform 0.1s ease;
 }
@@ -920,9 +966,9 @@ nav:hover {
 }
 
 .key-favicon-wrap img {
-  width: 30px;
-  height: 30px;
-  border-radius: 6px;
+  width: calc(var(--key-size) * 0.667);
+  height: calc(var(--key-size) * 0.667);
+  border-radius: calc(var(--key-size) * 0.133);
   object-fit: cover;
 }
 
@@ -939,12 +985,12 @@ nav:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px;
+  padding: calc(var(--key-size) * 0.178);
 }
 
 .key-social img {
-  width: 24px;
-  height: 24px;
+  width: calc(var(--key-size) * 0.533);
+  height: calc(var(--key-size) * 0.533);
   object-fit: contain;
 }
 
@@ -968,18 +1014,18 @@ nav:hover {
 /* Tast-labels */
 .key-label {
   color: hsla(0, 0%, 100%, 0.35);
-  font-size: 11px;
+  font-size: calc(var(--key-size) * 0.244);
   font-weight: 500;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   position: absolute;
-  bottom: 5px;
-  left: 7px;
+  bottom: calc(var(--key-size) * 0.111);
+  left: calc(var(--key-size) * 0.156);
   line-height: 1;
   pointer-events: none;
 }
 
 .key-label-sm {
-  font-size: 9px;
+  font-size: calc(var(--key-size) * 0.2);
   font-weight: 400;
 }
 
@@ -987,19 +1033,19 @@ nav:hover {
   color: hsla(0, 0%, 100%, 0.5);
 }
 
-.key.key-tab { width: 73.5px; }
-.key.key-caps { width: 89.5px; }
-.key.key-cmd { width: 65px; }
-.key.key-space { width: 233.5px; }
-.key.key-shift-r { width: 103.5px; }
-.key.key-lr { margin-top: 22.5px; height: 22.5px; }
+.key.key-tab { width: calc(var(--key-size) * 1.633); }
+.key.key-caps { width: calc(var(--key-size) * 1.989); }
+.key.key-cmd { width: calc(var(--key-size) * 1.444); }
+.key.key-space { width: calc(var(--key-size) * 5.189); }
+.key.key-shift-r { width: calc(var(--key-size) * 2.3); }
+.key.key-lr { margin-top: calc(var(--key-size) * 0.5); height: calc(var(--key-size) * 0.5); }
 
 .key.key-enter-r {
-  width: 51px;
-  height: 109px;
+  width: calc(var(--key-size) * 1.133);
+  height: calc(var(--key-size) * 2.422);
   position: absolute;
-  right: -2px;
-  margin-top: -2px;
+  right: calc(var(--key-size) * -0.044);
+  margin-top: calc(var(--key-size) * -0.044);
   z-index: 1;
   background: none;
   box-shadow: none;
@@ -1014,7 +1060,7 @@ nav:hover {
 }
 
 .key.key-up {
-  height: 22.5px;
+  height: calc(var(--key-size) * 0.5);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
@@ -1025,7 +1071,7 @@ nav:hover {
 }
 
 .key.key-down {
-  height: 22.5px;
+  height: calc(var(--key-size) * 0.5);
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
@@ -1039,36 +1085,6 @@ nav:hover {
   display: flex;
   flex-direction: column;
   gap: 0;
-}
-
-@media (max-width: 768px) {
-  .integrations-keyboard {
-    transform: rotate(-1deg) scale(0.55) !important;
-    transform-origin: left center;
-  }
-
-  .keyboard-section {
-    padding: 40px 0;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .keyboard-wrap {
-    padding: 0 24px;
-    display: flex;
-    justify-content: flex-start;
-  }
-}
-
-@media (max-width: 480px) {
-  .integrations-keyboard {
-    transform: rotate(-1deg) scale(0.48) !important;
-    transform-origin: left center;
-  }
-
-  .keyboard-section {
-    padding: 20px 0;
-  }
 }
 
 /* ============================================
@@ -2164,6 +2180,12 @@ footer {
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .integrations-keyboard {
+    --key-size: 41px;
+    --key-gap: 4.5px;
+    --keyboard-pad: 9px;
+  }
 }
 
 @media (max-width: 900px) {
@@ -2219,16 +2241,8 @@ footer {
 
   /* 1. HERO SHOWCASE VIDEOS — horizontal scroll strip */
   .hero-showcase {
-    position: relative;
-    right: auto;
-    top: auto;
-    transform: none;
-    display: flex;
-    gap: 12px;
-    padding: 32px 24px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+    margin-top: 32px;
+    padding: 0 24px 12px;
   }
 
   .hero-showcase::-webkit-scrollbar {
@@ -2236,34 +2250,34 @@ footer {
   }
 
   .showcase-card {
-    width: 160px !important;
-    height: 240px !important;
-    flex-shrink: 0;
-    animation: none !important;
-    opacity: 1 !important;
+    width: clamp(154px, 42vw, 190px) !important;
+    height: clamp(230px, 62vw, 280px) !important;
   }
 
   .showcase-1, .showcase-2, .showcase-3 {
-    animation-delay: 0s !important;
-    height: 240px !important;
+    height: clamp(230px, 62vw, 280px) !important;
   }
 
-  /* 2. KEYBOARD ON MOBILE — horizontal scroll */
+  /* 2. KEYBOARD ON MOBILE */
   .keyboard-section {
-    padding: 40px 0;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    padding: 48px 0;
+    overflow: hidden;
   }
 
   .keyboard-wrap {
-    padding: 0 24px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
   }
 
   .integrations-keyboard {
-    transform: rotate(-1deg) scale(0.55) !important;
-    transform-origin: left center;
+    --key-size: clamp(18px, 5.35vw, 41px);
+    --key-gap: clamp(1.6px, 0.58vw, 4.5px);
+    --keyboard-pad: clamp(4px, 1.2vw, 9px);
+    transform: rotate(-1deg) !important;
+    transform-origin: center center;
+    border-width: 1px;
+    border-radius: clamp(8px, 2vw, 15px);
+    box-shadow: 0 0 28px 0 rgba(0, 0, 0, 0.26);
   }
 
   /* 4. INSTAGRAM SERVICE CARDS ON MOBILE */
@@ -2407,6 +2421,14 @@ footer {
   .footer-top {
     grid-template-columns: 1fr;
     gap: 24px;
+  }
+
+  .keyboard-section {
+    padding: 32px 0;
+  }
+
+  .keyboard-wrap {
+    padding: 0 12px;
   }
 
   .insta-image h3,

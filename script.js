@@ -29,7 +29,7 @@ window.addEventListener('scroll', () => {
 
       // Hero showcase parallax (skip på mobil)
       const cards = document.querySelectorAll('.showcase-card');
-      if (currentScrollY < window.innerHeight && cards.length && window.innerWidth > 768) {
+      if (currentScrollY < window.innerHeight && cards.length && window.innerWidth > 1366) {
         const progress = currentScrollY / window.innerHeight;
         cards.forEach((card, i) => {
           const speed = 0.1 + i * 0.08;
@@ -44,22 +44,26 @@ window.addEventListener('scroll', () => {
       if (keyboard) {
         const kbSection = keyboard.closest('.keyboard-section');
         if (kbSection) {
-          const rect = kbSection.getBoundingClientRect();
-          const viewH = window.innerHeight;
-          const center = rect.top + rect.height / 2;
-          const position = (center - viewH / 2) / (viewH / 2);
-          const clamped = Math.max(-1, Math.min(1, position));
+          if (window.innerWidth > 1024) {
+            const rect = kbSection.getBoundingClientRect();
+            const viewH = window.innerHeight;
+            const center = rect.top + rect.height / 2;
+            const position = (center - viewH / 2) / (viewH / 2);
+            const clamped = Math.max(-1, Math.min(1, position));
 
-          const targetRotY = clamped * -6;
-          const targetRotX = clamped * 3;
-          const targetRot = -2.4 + clamped * 1.5;
+            const targetRotY = clamped * -6;
+            const targetRotX = clamped * 3;
+            const targetRot = -2.4 + clamped * 1.5;
 
-          // Smooth lerp
-          kbState.rotY += (targetRotY - kbState.rotY) * 0.08;
-          kbState.rotX += (targetRotX - kbState.rotX) * 0.08;
-          kbState.rot += (targetRot - kbState.rot) * 0.08;
+            // Smooth lerp
+            kbState.rotY += (targetRotY - kbState.rotY) * 0.08;
+            kbState.rotX += (targetRotX - kbState.rotX) * 0.08;
+            kbState.rot += (targetRot - kbState.rot) * 0.08;
 
-          keyboard.style.transform = `perspective(1000px) rotateY(${kbState.rotY}deg) rotateX(${kbState.rotX}deg) rotate(${kbState.rot}deg)`;
+            keyboard.style.transform = `perspective(1000px) rotateY(${kbState.rotY}deg) rotateX(${kbState.rotX}deg) rotate(${kbState.rot}deg)`;
+          } else {
+            keyboard.style.transform = '';
+          }
         }
       }
 
