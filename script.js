@@ -12,6 +12,7 @@ if (flashClose && flashBar) {
 const header = document.getElementById('header');
 let lastScrollY = 0;
 let ticking = false;
+const kbState = { rotY: -6, rotX: 3, rot: -2.4 };
 
 window.addEventListener('scroll', () => {
   if (!ticking) {
@@ -45,18 +46,20 @@ window.addEventListener('scroll', () => {
         if (kbSection) {
           const rect = kbSection.getBoundingClientRect();
           const viewH = window.innerHeight;
-
-          // Hvor langt gjennom viewporten er tastaturet (1 = topp, -1 = bunn)
           const center = rect.top + rect.height / 2;
           const position = (center - viewH / 2) / (viewH / 2);
           const clamped = Math.max(-1, Math.min(1, position));
 
-          // Scroll ned = tipp mot høyre, scroll opp = tipp mot venstre
-          const rotY = clamped * -6;
-          const rotX = clamped * 3;
-          const baseRot = -2.4 + clamped * 1.5;
+          const targetRotY = clamped * -6;
+          const targetRotX = clamped * 3;
+          const targetRot = -2.4 + clamped * 1.5;
 
-          keyboard.style.transform = `perspective(1000px) rotateY(${rotY}deg) rotateX(${rotX}deg) rotate(${baseRot}deg)`;
+          // Smooth lerp
+          kbState.rotY += (targetRotY - kbState.rotY) * 0.08;
+          kbState.rotX += (targetRotX - kbState.rotX) * 0.08;
+          kbState.rot += (targetRot - kbState.rot) * 0.08;
+
+          keyboard.style.transform = `perspective(1000px) rotateY(${kbState.rotY}deg) rotateX(${kbState.rotX}deg) rotate(${kbState.rot}deg)`;
         }
       }
 
